@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="row">
+    <ul>
+    <% @elements["order"].each do |element| %>
+      <li>
+        <%= @elements[element]["name"] %>
+        <%= @elements[element]["number"] %>-
+        <%= @elements[element]["period"] %>,
+        <%= @elements[element]["atomic_mass"] %>
+      </li>
+    <% end %>
+    </ul>
+  </div>
+</div>
+
+
+
