@@ -7,14 +7,14 @@ body {
 
 .periodic_table {
   border-collapse: collapse;
-  color: whitesmoke;
+  color: #313435;
   background: transparent;
 
   .index_label {
     font-size: 20px; 
     font-weight: bold; 
     text-align: center;
-    color: gray;
+    color: #cccccc;
     vertical-align: middle;
   }
 
@@ -52,5 +52,11 @@ body {
 
   .cell_text_bold {
     font-weight: bold;
+  }
+
+  .is_expanded {
+    color: #4F46E5;
+    background-color: white;
+    border: 1px solid #4F46E5;
   }
 }

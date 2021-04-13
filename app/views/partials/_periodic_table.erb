@@ -19,19 +19,21 @@
                 <%= row %>
             </td>
             <% columns.each do | index, column | %>
-                <% unless column['data'].nil? %>
-                <td class="cell cell_bordered">
-                    <% if column['is_expanded'] == false %>
-                        <div class="cell_text_md"><%= column['data']['number'] %></div>
-                        <div class="cell_text_lg cell_text_bold"><%= column['data']['symbol'] %></div>
-                        <div class="cell_text_xs"><%= column['data']['name'] %></div>
-                        <div class="cell_text_sm"><%= column['data']['atomic_mass'] %></div>
-                    <% end %>
-                </td>
+                <% if !column['data'].nil? %>
+                    <td class="cell cell_bordered" style="background-color: <%= column['data']['color'] %>" title="<%= column['data']['category'] %>">
+                        <% if column['is_expanded'] == false %>
+                            <div class="cell_text_md"><%= column['data']['number'] %></div>
+                            <div class="cell_text_lg cell_text_bold"><%= column['data']['symbol'] %></div>
+                            <div class="cell_text_xs"><%= column['data']['name'] %></div>
+                            <div class="cell_text_sm"><%= column['data']['atomic_mass'] %></div>
+                        <% end %>
+                    </td>
+                <% elsif column['is_expanded'] %>
+                    <td class="cell cell_borderless cell_text_md index_label text-center is_expanded">
+                        <%= column['label'] %>
+                    </td>
                 <% else %>
-                <td class="cell cell_borderless cell_text_md text-center">
-                    <%= column['label'] %>
-                </td>
+                    <td class="cell cell_borderless"></td>
                 <% end %>
             <% end %>
             </tr>
@@ -44,11 +46,11 @@
             <td class="cell cell_borderless"></td>
             <td class="cell cell_borderless"></td>
             <td class="cell cell_borderless"></td>
-            <td class="cell cell_borderless index_label">
+            <td class="cell cell_borderless index_label is_expanded">
                 6
             </td>
             <% @periodic_table['y6x3_expanded'].each do | row, column | %>
-                <td class="cell cell_bordered">
+                <td class="cell cell_bordered" style="background-color: <%= column['data']['color'] %>" title="<%= column['data']['category'] %>">
                     <div class="cell_text_md"><%= column['data']['number'] %></div>
                     <div class="cell_text_lg cell_text_bold"><%= column['data']['symbol'] %></div>
                     <div class="cell_text_xs"><%= column['data']['name'] %></div>
@@ -64,11 +66,11 @@
             <td class="cell cell_borderless"></td>
             <td class="cell cell_borderless"></td>
             <td class="cell cell_borderless"></td>
-            <td class="cell cell_borderless index_label">
+            <td class="cell cell_borderless index_label is_expanded">
                 7
             </td>
             <% @periodic_table['y7x3_expanded'].each do | row, column | %>
-                <td class="cell cell_bordered">
+                <td class="cell cell_bordered" style="background-color: <%= column['data']['color'] %>" title="<%= column['data']['category'] %>">
                     <div class="cell_text_md"><%= column['data']['number'] %></div>
                     <div class="cell_text_lg cell_text_bold"><%= column['data']['symbol'] %></div>
                     <div class="cell_text_xs"><%= column['data']['name'] %></div>

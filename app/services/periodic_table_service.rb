@@ -11,25 +11,27 @@ class PeriodicTableService
         @elements_order = data['order']
         @elements       = data.except!('order')
 
-        @head          = []
-        @body          = {}
-        @y6x3_expanded = {}
-        @y7x3_expanded = {}
+        @head            = []
+        @body            = {}
+        @y6x3_expanded   = {}
+        @y7x3_expanded   = {}
+        @category_colors = {}
     end
     
 
     def call
 
+        map_category_colors
         convert_list_to_matrix
         set_subgroup_labels
         fill_empty_columns_and_make_header
         sort_elements
 
         {
-            'head'          => @head,
-            'body'          => @body,
-            'y6x3_expanded' => @y6x3_expanded,
-            'y7x3_expanded' => @y7x3_expanded
+            'head'            => @head,
+            'body'            => @body,
+            'y6x3_expanded'   => @y6x3_expanded,
+            'y7x3_expanded'   => @y7x3_expanded
         }
 
     end 
@@ -46,7 +48,9 @@ class PeriodicTableService
                         'number'      => element['number'],
                         'symbol'      => element['symbol'],
                         'name'        => element['name'],
-                        'atomic_mass' => element['atomic_mass'].to_f.round(3)
+                        'atomic_mass' => element['atomic_mass'].to_f.round(3),
+                        'category'    => element['category'],
+                        'color'       => @category_colors[element['category']]
                     }, 
                     'is_expanded' => false
                 }
@@ -94,6 +98,42 @@ class PeriodicTableService
             @body.each do |row, columns|
                 @body[row] = columns.sort
             end
+        end
+
+        def map_category_colors
+            categories = []
+            colors     = default_colors
+
+            @elements.each do | element, attributes |
+                categories << attributes['category']
+            end
+
+            categories.uniq.each.with_index do | category, idx |
+                @category_colors[category] = colors[idx]   if colors[idx].present?
+                @category_colors[category] = 'transparent' if colors[idx].nil?
+            end
+        end
+
+        def default_colors
+            [
+                '#06B6D4',
+                '#10B981',
+                '#5EEAD4',
+                '#60A5FA',
+                '#7DD3FC',
+                '#86EFAC',
+                '#A5B4FC',
+                '#A78BFA',
+                '#BEF264',
+                '#CBD5E1',
+                '#D8B4FE',
+                '#EAB308',
+                '#F472B6',
+                '#FCA5A5',
+                '#FCD34D',
+                '#FDA4AF',
+                '#FDBA74',
+            ]
         end
 
 end
