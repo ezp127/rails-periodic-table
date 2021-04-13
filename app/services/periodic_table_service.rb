@@ -10,7 +10,6 @@ class PeriodicTableService
     def initialize(data)
         @elements_order = data['order']
         @elements       = data.except!('order')
-
         @head            = []
         @body            = {}
         @y6x3_expanded   = {}
@@ -45,7 +44,6 @@ class PeriodicTableService
     private 
 
         def convert_list_to_matrix
-
             @elements_order.each do | element_key |
                 element = @elements[element_key]
                 values = { 
@@ -69,10 +67,8 @@ class PeriodicTableService
         end
 
         def set_subgroup_labels
-            
             label_y6x3 = [@y6x3_expanded.first[1]['data']['number'].to_s, @y6x3_expanded.to_a.last[1]['data']['number'].to_s].join(' - ')
             label_y7x3 = [@y7x3_expanded.first[1]['data']['number'].to_s, @y7x3_expanded.to_a.last[1]['data']['number'].to_s].join(' - ')
-
             @body[Y6][X3] = { 'data' => nil, 'label' => label_y6x3, 'is_expanded' => true }
             @body[Y7][X3] = { 'data' => nil, 'label' => label_y7x3, 'is_expanded' => true }
         end
@@ -137,11 +133,9 @@ class PeriodicTableService
         def map_category_colors
             categories = []
             colors     = default_colors
-
             @elements.each do | element, attributes |
                 categories << attributes['category']
             end
-
             categories.uniq.each.with_index do | category, idx |
                 @category_colors[category] = colors[idx]   if colors[idx].present?
                 @category_colors[category] = 'transparent' if colors[idx].nil?
