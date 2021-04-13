@@ -4,3 +4,53 @@ body {
   background: #313435;
   color: whitesmoke;
 }
+
+.periodic_table {
+  border-collapse: collapse;
+  color: whitesmoke;
+  background: transparent;
+
+  .index_label {
+    font-size: 20px; 
+    font-weight: bold; 
+    text-align: center;
+    color: gray;
+    vertical-align: middle;
+  }
+
+  .cell {
+    width: 77px; 
+    height: 70px; 
+    padding: 2px; 
+    vertical-align: middle;
+    line-height: 1.1;
+  }
+
+  .cell_borderless {
+    border: none;
+  }
+
+  .cell_bordered {
+    border: 1px solid #000;
+  }
+
+  .cell_text_xs {
+    font-size: 11px;
+  }
+
+  .cell_text_sm {
+    font-size: 13px;
+  }
+
+  .cell_text_md {
+    font-size: 14px;
+  }
+
+  .cell_text_lg {
+    font-size: 22px;
+  }
+
+  .cell_text_bold {
+    font-weight: bold;
+  }
+}

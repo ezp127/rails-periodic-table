@@ -1,10 +1,10 @@
 
-<table class="my-5" style="border-collapse: collapse;">
+<table class="periodic_table my-5">
         
     <thead>
         <tr>
             <% @periodic_table['head'].each do | head | %>
-                <th style="width: 77px; height: 25px; padding: 2px; vertical-align: middle; font-size: 20px; font-weight: bold; text-align: center;">
+                <th class="cell cell_borderless index_label">
                     <%= head %>
                 </th>
             <% end %>
@@ -15,21 +15,21 @@
     <tbody>
         <% @periodic_table['body'].each do | row, columns | %>
             <tr>
-            <td style="height: 77px; padding: 2px; text-align: center; vertical-align: middle; font-size: 20px; font-weight: bold;">
+            <td class="cell cell_borderless index_label">
                 <%= row %>
             </td>
             <% columns.each do | index, column | %>
                 <% unless column['data'].nil? %>
-                <td style="text-align: left; border: 1px solid #000; padding: 2px;">
+                <td class="cell cell_bordered">
                     <% if column['is_expanded'] == false %>
-                    <div style="line-height: 1; font-size: 14px;"><%= column['data']['number'] %></div>
-                    <div style="line-height: 1; font-size: 22px; font-weight: bold;"><%= column['data']['symbol'] %></div>
-                    <div style="line-height: 1; font-size: 11px;"><%= column['data']['name'] %></div>
-                    <div style="line-height: 1; font-size: 13px;"><%= column['data']['atomic_mass'] %></div>
+                        <div class="cell_text_md"><%= column['data']['number'] %></div>
+                        <div class="cell_text_lg cell_text_bold"><%= column['data']['symbol'] %></div>
+                        <div class="cell_text_xs"><%= column['data']['name'] %></div>
+                        <div class="cell_text_sm"><%= column['data']['atomic_mass'] %></div>
                     <% end %>
                 </td>
                 <% else %>
-                <td style="text-align: center; font-size: 14px;">
+                <td class="cell cell_borderless cell_text_md text-center">
                     <%= column['label'] %>
                 </td>
                 <% end %>
@@ -41,18 +41,18 @@
     <% # Row 6 | Column 3 - Expanded Subgroup %>
     <tbody>
         <tr>
-            <td style="width: 77px; padding: 2px;"></td>
-            <td style="width: 77px; padding: 2px;"></td>
-            <td style="width: 77px; padding: 2px;"></td>
-            <td style="width: 77px; padding: 2px; height: 77px; text-align: center; vertical-align: middle; font-size: 20px; font-weight: bold;">
+            <td class="cell cell_borderless"></td>
+            <td class="cell cell_borderless"></td>
+            <td class="cell cell_borderless"></td>
+            <td class="cell cell_borderless index_label">
                 6
             </td>
             <% @periodic_table['y6x3_expanded'].each do | row, column | %>
-                <td style="width: 77px; text-align: left; border: 1px solid #000; padding: 2px;">
-                    <div style="line-height: 1; font-size: 14px;"><%= column['data']['number'] %></div>
-                    <div style="line-height: 1; font-size: 22px; font-weight: bold;"><%= column['data']['symbol'] %></div>
-                    <div style="line-height: 1; font-size: 11px;"><%= column['data']['name'] %></div>
-                    <div style="line-height: 1; font-size: 13px;"><%= column['data']['atomic_mass'].to_f.round 3 %></div>
+                <td class="cell cell_bordered">
+                    <div class="cell_text_md"><%= column['data']['number'] %></div>
+                    <div class="cell_text_lg cell_text_bold"><%= column['data']['symbol'] %></div>
+                    <div class="cell_text_xs"><%= column['data']['name'] %></div>
+                    <div class="cell_text_sm"><%= column['data']['atomic_mass'].to_f.round 3 %></div>
                 </td>
             <% end %>
         </tr>
@@ -61,18 +61,18 @@
     <% # Row 7 | Column 3 - Expanded Subgroup %>
     <tbody>
         <tr>
-            <td style="width: 77px; padding: 2px;"></td>
-            <td style="width: 77px; padding: 2px;"></td>
-            <td style="width: 77px; padding: 2px;"></td>
-            <td style="width: 77px; padding: 2px; height: 77px; text-align: center; vertical-align: middle; font-size: 20px; font-weight: bold;">
+            <td class="cell cell_borderless"></td>
+            <td class="cell cell_borderless"></td>
+            <td class="cell cell_borderless"></td>
+            <td class="cell cell_borderless index_label">
                 7
             </td>
             <% @periodic_table['y7x3_expanded'].each do | row, column | %>
-                <td style="width: 77px; text-align: left; border: 1px solid #000; padding: 2px;">
-                    <div style="line-height: 1; font-size: 14px;"><%= column['data']['number'] %></div>
-                    <div style="line-height: 1; font-size: 22px; font-weight: bold;"><%= column['data']['symbol'] %></div>
-                    <div style="line-height: 1; font-size: 11px;"><%= column['data']['name'] %></div>
-                    <div style="line-height: 1; font-size: 13px;"><%= column['data']['atomic_mass'].to_f.round 3 %></div>
+                <td class="cell cell_bordered">
+                    <div class="cell_text_md"><%= column['data']['number'] %></div>
+                    <div class="cell_text_lg cell_text_bold"><%= column['data']['symbol'] %></div>
+                    <div class="cell_text_xs"><%= column['data']['name'] %></div>
+                    <div class="cell_text_sm"><%= column['data']['atomic_mass'].to_f.round 3 %></div>
                 </td>
             <% end %>
         </tr>
