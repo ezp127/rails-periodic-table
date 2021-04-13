@@ -1,9 +1,25 @@
 class TableController < ApplicationController
-  def index
+  
+    def index
+        data = load_data
+        @periodic_table = PeriodicTableService.new(data).build
+    end
 
-    file = File.read("db/data.json")
-    data = JSON.parse(file)
+    def show
+        element_key = params[:id]
+        data        = load_data
+        data[element_key] or not_found
+        @element = PeriodicTableService.new(data).element element_key
+    end
 
-    @periodic_table = PeriodicTableService.new(data).call
-  end
+    private
+
+        def load_data
+            data = JSON.parse(File.read("db/data.json"))
+        end
+
+        def not_found
+            raise ActionController::RoutingError.new('Not Found')
+        end
+
 end

@@ -18,40 +18,38 @@ class PeriodicTableService
         @category_colors = {}
     end
     
+    ### Public API
 
-    def call
-
+    def build
         map_category_colors
         convert_list_to_matrix
         set_subgroup_labels
         fill_empty_columns_and_make_header
         sort_elements
-
         {
             'head'            => @head,
             'body'            => @body,
             'y6x3_expanded'   => @y6x3_expanded,
             'y7x3_expanded'   => @y7x3_expanded
         }
-
     end 
     
+    def element element_key
+        map_category_colors
+        element = @elements[element_key]
+        element_values(element_key, element)
+    end 
+
+    ### 
+
     private 
 
         def convert_list_to_matrix
 
-            @elements_order.each do | el |
-                element = @elements[el]
+            @elements_order.each do | element_key |
+                element = @elements[element_key]
                 values = { 
-                    'data' => {
-                        # public attributes
-                        'number'      => element['number'],
-                        'symbol'      => element['symbol'],
-                        'name'        => element['name'],
-                        'atomic_mass' => element['atomic_mass'].to_f.round(3),
-                        'category'    => element['category'],
-                        'color'       => @category_colors[element['category']]
-                    }, 
+                    'data'        => element_values(element_key, element), 
                     'is_expanded' => false
                 }
                 ypos   = element['ypos']
@@ -98,6 +96,42 @@ class PeriodicTableService
             @body.each do |row, columns|
                 @body[row] = columns.sort
             end
+        end
+
+        def element_values element_key, element
+            # Public Attributes
+            {
+                'element'     => element_key,
+                'number'      => element['number'],
+                'symbol'      => element['symbol'],
+                'name'        => element['name'],
+                'atomic_mass' => element['atomic_mass'].to_f.round(3),
+                'category'    => element['category'],
+                'shells'      => element['shells'],
+                'bg_color'    => @category_colors[element['category']],
+                'details'     => {
+                    'appearance'                      => element['appearance'],
+                    'boil'                            => element['boil'],
+                    'color'                           => element['color'],
+                    'density'                         => element['density'],
+                    'discovered_by'                   => element['discovered_by'],
+                    'melt'                            => element['melt'],
+                    'molar_heat'                      => element['molar_heat'],
+                    'named_by'                        => element['named_by'],
+                    'period'                          => element['period'],
+                    'phase'                           => element['phase'],
+                    'source'                          => element['source'],
+                    'spectral_img'                    => element['spectral_img'],
+                    'summary'                         => element['summary'],
+                    'xpos'                            => element['xpos'],
+                    'ypos'                            => element['ypos'],
+                    'electron_configuration'          => element['electron_configuration'],
+                    'electron_configuration_semantic' => element['electron_configuration_semantic'],
+                    'electron_affinity'               => element['electron_affinity'],
+                    'electronegativity_pauling'       => element['electronegativity_pauling'],
+                    'ionization_energies'             => element['ionization_energies']
+                }
+            }
         end
 
         def map_category_colors

@@ -20,12 +20,14 @@
             </td>
             <% columns.each do | index, column | %>
                 <% if !column['data'].nil? %>
-                    <td class="cell cell_bordered" style="background-color: <%= column['data']['color'] %>" title="<%= column['data']['category'] %>">
+                    <td class="cell cell_bordered" style="background-color: <%= column['data']['bg_color'] %>" title="<%= column['data']['category'] %>">
                         <% if column['is_expanded'] == false %>
-                            <div class="cell_text_md"><%= column['data']['number'] %></div>
-                            <div class="cell_text_lg cell_text_bold"><%= column['data']['symbol'] %></div>
-                            <div class="cell_text_xs"><%= column['data']['name'] %></div>
-                            <div class="cell_text_sm"><%= column['data']['atomic_mass'] %></div>
+                            <a href="<%= table_path(column['data']['element']) %>">
+                                <div class="cell_text_md"><%= column['data']['number'] %></div>
+                                <div class="cell_text_lg cell_text_bold"><%= column['data']['symbol'] %></div>
+                                <div class="cell_text_xs"><%= column['data']['name'] %></div>
+                                <div class="cell_text_sm"><%= column['data']['atomic_mass'] %></div>
+                            </a>
                         <% end %>
                     </td>
                 <% elsif column['is_expanded'] %>
@@ -50,11 +52,13 @@
                 6
             </td>
             <% @periodic_table['y6x3_expanded'].each do | row, column | %>
-                <td class="cell cell_bordered" style="background-color: <%= column['data']['color'] %>" title="<%= column['data']['category'] %>">
-                    <div class="cell_text_md"><%= column['data']['number'] %></div>
-                    <div class="cell_text_lg cell_text_bold"><%= column['data']['symbol'] %></div>
-                    <div class="cell_text_xs"><%= column['data']['name'] %></div>
-                    <div class="cell_text_sm"><%= column['data']['atomic_mass'].to_f.round 3 %></div>
+                <td class="cell cell_bordered" style="background-color: <%= column['data']['bg_color'] %>" title="<%= column['data']['category'] %>">
+                    <a href="<%= table_path(column['data']['element']) %>">
+                        <div class="cell_text_md"><%= column['data']['number'] %></div>
+                        <div class="cell_text_lg cell_text_bold"><%= column['data']['symbol'] %></div>
+                        <div class="cell_text_xs"><%= column['data']['name'] %></div>
+                        <div class="cell_text_sm"><%= column['data']['atomic_mass'].to_f.round 3 %></div>
+                    </a>
                 </td>
             <% end %>
         </tr>
@@ -70,11 +74,13 @@
                 7
             </td>
             <% @periodic_table['y7x3_expanded'].each do | row, column | %>
-                <td class="cell cell_bordered" style="background-color: <%= column['data']['color'] %>" title="<%= column['data']['category'] %>">
-                    <div class="cell_text_md"><%= column['data']['number'] %></div>
-                    <div class="cell_text_lg cell_text_bold"><%= column['data']['symbol'] %></div>
-                    <div class="cell_text_xs"><%= column['data']['name'] %></div>
-                    <div class="cell_text_sm"><%= column['data']['atomic_mass'].to_f.round 3 %></div>
+                <td class="cell cell_bordered" style="background-color: <%= column['data']['bg_color'] %>" title="<%= column['data']['category'] %>">
+                    <a href="<%= table_path(column['data']['element']) %>">
+                        <div class="cell_text_md"><%= column['data']['number'] %></div>
+                        <div class="cell_text_lg cell_text_bold"><%= column['data']['symbol'] %></div>
+                        <div class="cell_text_xs"><%= column['data']['name'] %></div>
+                        <div class="cell_text_sm"><%= column['data']['atomic_mass'].to_f.round 3 %></div>
+                    </a>
                 </td>
             <% end %>
         </tr>

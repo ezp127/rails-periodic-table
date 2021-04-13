@@ -1,14 +1,18 @@
 @import "~bootstrap";
 
 body {
-  background: #313435;
+  background: #1F2937;
   color: whitesmoke;
 }
 
 .periodic_table {
   border-collapse: collapse;
-  color: #313435;
+  color: #18181B;
   background: transparent;
+
+  a {
+    color: #18181B;
+  }
 
   .index_label {
     font-size: 20px; 
@@ -31,7 +35,7 @@ body {
   }
 
   .cell_bordered {
-    border: 1px solid #000;
+    border: 1px solid #18181B;
   }
 
   .cell_text_xs {
@@ -58,5 +62,39 @@ body {
     color: #4F46E5;
     background-color: white;
     border: 1px solid #4F46E5;
+  }
+}
+
+.periodic_table_element {
+  position: relative;
+  background: whitesmoke;
+  color: #18181B;
+  border: 5px solid #18181B;
+  padding: 20px;
+
+  .element_text_sm {
+    font-size: 18px;
+  }
+
+  .element_text_md {
+    font-size: 22px;
+  }
+
+  .element_text_lg {
+    font-size: 50px;
+  }
+
+  .element_text_bold {
+    font-weight: bold;
+  }
+
+  .element_shell {
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 20px;
+    line-height: 1.2;
+    text-align: right;
   }
 }

@@ -1,0 +1,20 @@
+
+<div class="periodic_table_element mb-3" style="background-color: <%= @element['bg_color'] %>">
+    <div class="element_text_md">
+        <%= @element['number'] %>
+    </div>
+    <div class="element_text_lg element_text_bold">
+        <%= @element['symbol'] %>
+    </div>
+    <div class="element_text_md">
+        <%= @element['name'] %>
+    </div>
+    <div class="element_text_md">
+        <%= @element['atomic_mass'] %>
+    </div>
+    <div class="element_shell element_text_sm">
+        <% @element['shells'].each do | shell | %>
+            <div><%= shell %></div>
+        <% end %>
+    </div>
+</div>
