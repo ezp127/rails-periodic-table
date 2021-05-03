@@ -78,8 +78,27 @@ Ao avançar ele pedirá que faça login com sua conta do GitHub e pronto, seu am
 Quando o ambiente estiver pronto, você presirá rodar os comandos:
 
 ```bash
+gem install bundler:2.2.4
 bundle install
 yarn install
+```
+
+Crie o arquivo `config/database.yml` com o seguinte conteúdo:
+
+```bash
+development:
+  adapter: sqlite3
+  database: db/development.sqlite3
+  pool: 5
+  timeout: 5000
+```
+
+Crie o arquivo `db/development.sqlite3`
+
+Em seguida, rode o comando: 
+
+```bash
+rails db:migrate 
 ```
 
 Para rodar a aplicação:
