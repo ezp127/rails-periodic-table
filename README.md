@@ -128,3 +128,11 @@ E deve estar compatível com o ambiente do Gitpod, que é por onde faremos a ava
 Se tiver qualquer problema, entre em contato.
 
 Abraços.
+
+- - -
+
+### Preview do Resultado
+
+![preview](https://raw.githubusercontent.com/ezp127/rails-periodic-table/main/preview.png "Preview")
+
+
