@@ -7,7 +7,7 @@ class TableController < ApplicationController
 
     def show
         element_key = params[:id]
-        data        = load_data
+        data = load_data
         data[element_key] or not_found
         @element = PeriodicTableService.new(data).element element_key
     end
@@ -15,7 +15,7 @@ class TableController < ApplicationController
     private
 
         def load_data
-            data = JSON.parse(File.read("db/data.json"))
+            data = JSON.parse(File.read('db/data.json'))
         end
 
         def not_found
